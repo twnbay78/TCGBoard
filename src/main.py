@@ -29,6 +29,7 @@ class MtgDashboardWindow:
         # Replace this with actual business logic to pull data
         marketplace_search_connector = MarketplaceSearchConnector()
         mh3_market_price = marketplace_search_connector.get_lowest_price_with_shipping_by_url_name("Modern Horizons 3 Collector Booster Display")
+        mh3_lowest_price_with_shipping = marketplace_search_connector.get_market_price_by_url_name("Modern Horizons 3 Collector Booster Display")
         self.global_last_refresh_time = datetime.now()
         next_refresh = self.global_last_refresh_time + timedelta(milliseconds=self.refresh_frequency)
         time_str = "%Y-%m-%d %H:%M"
@@ -37,7 +38,8 @@ class MtgDashboardWindow:
             f"Next Refresh: {next_refresh.strftime(time_str)}\n"
             "-----\n"
             "Modern Horizons 3 Collector Booster Display\n"
-            f"Lowest TCGPlayer Price: ${str(mh3_market_price)}\n"
+            f"Market Price: ${str(mh3_market_price)}\n"
+            f"Lowest TCGPlayer Price: ${str(mh3_lowest_price_with_shipping)}\n"
         )
 
         return output_data
